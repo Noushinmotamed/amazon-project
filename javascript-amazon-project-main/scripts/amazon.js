@@ -93,7 +93,12 @@ function getQuantity(id){
   const selectorElement = document.querySelector(`.js-quantity-selector-${id}`);
   return selectorElement.value;
 }
+let timeOutId;
 function getMessage(id){
   const element = document.querySelector(`.js-added-to-cart-${id}`);
+  clearTimeout(timeOutId);
+  timeOutId = setTimeout(()=>{
+    element.classList.remove('add-to-cart-visible');
+  },2000);
   element.classList.add('add-to-cart-visible');
 }
