@@ -673,6 +673,7 @@ export const products = [
     ]
   },
   {
+    id: "id2",
     image: "images/products/backpack.jpg",
     name: "BackPack",
     rating: {
