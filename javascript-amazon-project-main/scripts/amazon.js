@@ -67,8 +67,6 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) =>{
     quantity = Number(quantity);
      console.log(quantity);
    let matchingItem = addToCart(productId,quantity);
-   
-    localStorage.setItem('cart', JSON.stringify(cart));
     calculateCartQuantity();
     console.log(cart);
   });

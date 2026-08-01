@@ -100,4 +100,6 @@ document.querySelectorAll('.js-delete-quantity-link').forEach((itemLink) => {
 document.querySelectorAll('.js-update-quantity-link').forEach((itemLink) => {
  itemLink.addEventListener('click',()=> { updateItemQuantity(itemLink)});
 });
-
+function addToStorage(){
+  localStorage.addItem('cart',JSON.stringify(cart));
+}

@@ -1,19 +1,5 @@
-//  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+export let  cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-export let cart = [
-  {
-    productId: 'id1',
-    quantity: 3
-  },
-  {
-    productId: 'id2',
-    quantity: 1
-  },
-  {
-    productId: 'bc2847e9-5323-403f-b7cf-57fde044a955',
-    quantity: 5
-  }
-];
 export function addToCart(productId,quantity){
   let matchingItem;
   cart.forEach((cartItem) =>{
@@ -26,6 +12,7 @@ export function addToCart(productId,quantity){
    });}else{
     matchingItem.quantity += quantity;
    }
+   addToStorage();
    return matchingItem;
 }
 export function updateItemQuantity(itemLink){
@@ -39,4 +26,8 @@ export function deleteItemQuantity(itemLink){
   console.log(cart);
   const container = document.querySelector(`.js-cart-item-container-${productId}`);
   container.remove();
+  addToStorage();
+}
+function addToStorage(){
+  localStorage.setItem('cart',JSON.stringify(cart));
 }
