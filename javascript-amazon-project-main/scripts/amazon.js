@@ -1,7 +1,7 @@
 
 let productsHTML = '';
 let cartQuantity =  0  ;
-import {cart} from '../data/cart.js';
+import {addToCart, cart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 products.forEach((product) => {
@@ -62,22 +62,11 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 document.querySelectorAll('.js-add-to-cart-button').forEach((button) =>{
   button.addEventListener('click',() => {
    const productId= button.dataset.productId;
-   let matchingItem;
    let quantity = getQuantity(productId);
    let addedMessage = getMessage(productId);
     quantity = Number(quantity);
      console.log(quantity);
-   cart.forEach((product) =>{
-    if (product.productId === productId) matchingItem = product;
-   });
-   if(!matchingItem){
-   cart.push({
-    productId,
-    quantity
-   });}else{
-    matchingItem.quantity += quantity;
-   }
-   
+   let matchingItem = addToCart(productId,quantity);
    
     localStorage.setItem('cart', JSON.stringify(cart));
     calculateCartQuantity();
