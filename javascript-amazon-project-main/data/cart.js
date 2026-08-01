@@ -27,7 +27,15 @@ export function deleteItemQuantity(itemLink){
   const container = document.querySelector(`.js-cart-item-container-${productId}`);
   container.remove();
   addToStorage();
+  calculateCartQuantity();
 }
 function addToStorage(){
   localStorage.setItem('cart',JSON.stringify(cart));
+}
+function calculateCartQuantity(){
+  let cartQuantity=0;
+  cart.forEach((product) =>{
+     cartQuantity += product.quantity;
+  });
+  document.querySelector('.js-return-to-home-link').innerHTML = cartQuantity + ' items';
 }
