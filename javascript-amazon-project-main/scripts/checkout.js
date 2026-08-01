@@ -1,4 +1,4 @@
-import {cart, updateItemQuantity, deleteItemQuantity} from '../data/cart.js';
+import {cart, updateItemQuantity, deleteItemQuantity, calculateCartQuantity} from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 let cartHTML = ''
@@ -29,13 +29,15 @@ cart.forEach((cartItem)=>{
                 <div class="product-price">
                   $${formatCurrency(matchingItem.priceCents)}
                 </div>
-                <div class="product-quantity">
-                  <span>
-                    Quantity: <span class="quantity-label">${quantity}</span>
+                <div class="product-quantity js-product-quantity">
+                  <span class="span-quantity">
+                    Quantity: <span class="quantity-label js-quantity-label-${matchingItem.id}">${quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id = "${matchingItem.id}">
                     Update
                   </span>
+                  <input class="quantity-input js-quantity-input-${matchingItem.id}">
+                  <span class="save-quantity-link link-primary js-save-quantity-link-${matchingItem.id}">Save</span>
                   <span class="delete-quantity-link link-primary js-delete-quantity-link" data-product-id = "${matchingItem.id}">
                     Delete
                   </span>
@@ -99,15 +101,9 @@ document.querySelectorAll('.js-delete-quantity-link').forEach((itemLink) => {
  itemLink.addEventListener('click',()=> { deleteItemQuantity(itemLink)});
 });
 document.querySelectorAll('.js-update-quantity-link').forEach((itemLink) => {
- itemLink.addEventListener('click',()=> { updateItemQuantity(itemLink)});
+ itemLink.addEventListener('click',()=> { 
+  updateItemQuantity(itemLink)});
 });
 function addToStorage(){
   localStorage.addItem('cart',JSON.stringify(cart));
-}
-function calculateCartQuantity(){
-   let cartQuantity = 0;
-  cart.forEach((product) =>{
-     cartQuantity += product.quantity;
-  });
-  return cartQuantity;
 }
