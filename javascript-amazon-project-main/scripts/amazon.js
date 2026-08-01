@@ -1,9 +1,11 @@
 
-let productsHTML = '';
-let cartQuantity =  calculateCartQuantity();
-import {addToCart, cart} from '../data/cart.js';
+import {addToCart, cart, calculateCartQuantity } from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
+let productsHTML = '';
+let cartQuantity =  calculateCartQuantity() || 0 ;
+document.querySelector('.js-cart-quantity').innerHTML = calculateCartQuantity();
+
 
 products.forEach((product) => {
   productsHTML += 
@@ -68,19 +70,19 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) =>{
     quantity = Number(quantity);
      console.log(quantity);
    let matchingItem = addToCart(productId,quantity);
-    calculateCartQuantity();
+    document.querySelector('.js-cart-quantity').innerHTML = calculateCartQuantity();
     console.log(cart);
   });
 });
 
-function calculateCartQuantity(){
-   let cartQuantity = 0;
-  cart.forEach((product) =>{
-     cartQuantity += product.quantity;
-  });
-  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-  return cartQuantity;
-}
+// function calculateCartQuantity(){
+//    let cartQuantity = 0;
+//   cart.forEach((product) =>{
+//      cartQuantity += product.quantity;
+//   });
+//   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+//   return cartQuantity;
+// }
 function getQuantity(id){
   const selectorElement = document.querySelector(`.js-quantity-selector-${id}`);
   return selectorElement.value;
