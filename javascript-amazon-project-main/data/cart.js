@@ -37,4 +37,6 @@ export function deleteItemQuantity(itemLink){
     if (item.productId === productId) cart.splice(index,1);
   });
   console.log(cart);
+  const container = document.querySelector(`.js-cart-item-container-${productId}`);
+  container.remove();
 }
