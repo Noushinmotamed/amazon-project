@@ -8,8 +8,10 @@ export function addToCart(productId,quantity){
    if(!matchingItem){
    cart.push({
     productId,
-    quantity
-   });}else{
+    quantity,
+    deliveryOptionId: '3'
+   });
+  }else{
     matchingItem.quantity += quantity;
    }
    addToStorage();
