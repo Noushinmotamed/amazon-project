@@ -1,12 +1,14 @@
-import {cart, updateItemQuantity, deleteItemQuantity, calculateCartQuantity} from '../data/cart.js';
+import {cart, updateItemQuantity, deleteItemQuantity, calculateCartQuantity, updateDeliveryOption} from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions } from '../data/deliveryOptions.js';
+
 let cartHTML = ''
 function displayCart(){
   cartHTML = '';
 cart.forEach((cartItem)=>{
+  console.log(cartItem);
   let id = cartItem.productId;
   let quantity = cartItem.quantity;
   let matchingItem;
@@ -16,9 +18,13 @@ cart.forEach((cartItem)=>{
 
   const deliveryOptionId = cartItem.deliveryOptionId;
   let deliveryOption;
-
   deliveryOptions.forEach((option)=>{
-    if (option.id === deliveryOptionId) deliveryOption = option;
+    console.log(option.id);
+    
+    if (option.id === deliveryOptionId) {
+      deliveryOption = option;
+      console.log(option);
+    }
   });
    const deliveryDate = dayjs().add(deliveryOption.deliveryDays,'days').format('dddd, MMMM D');
 
@@ -90,7 +96,8 @@ function deliveryOptionsHTML(matchingItem,cartItem){
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
      html += `
-                <div class="delivery-option js-delivery-option" data-product-id="${matchingItem.id}" >
+                <div class="delivery-option js-delivery-option" data-product-id="${matchingItem.id}"
+                data-delivery-option-id-${matchingItem.id} >
                   <input type="radio" 
                     ${isChecked ? 'checked' : ''}
                     class="delivery-option-input js-delivery-option-input-${matchingItem.id}"}
@@ -111,14 +118,8 @@ function deliveryOptionsHTML(matchingItem,cartItem){
 document.querySelectorAll('.js-delivery-option').forEach((element)=>{
   const id = element.dataset.productId;
   element.addEventListener('click',()=>{
-    let matchingItme='';
-    cart.forEach((item)=>{
-      if (item.productId === id) matchingItme = item;
-    });
-    const choiceElement = document.querySelector(`.js-delivery-option-input-${id}`);
-    console.log(choiceElement);
-    console.log(choiceElement.value);
-    console.log(value);
+    const {productId,deliveryOptionId} = element.dataset;
+   updateDeliveryOption(productId,deliveryOptionId);
   });
   
 })
