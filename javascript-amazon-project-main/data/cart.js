@@ -1,3 +1,5 @@
+import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
+
 export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 export function addToCart(productId,quantity){
@@ -42,6 +44,8 @@ export function deleteItemQuantity(itemLink){
   container.remove();
   addToStorage();
   document.querySelector('.js-return-to-home-link').innerHTML = calculateCartQuantity() + ' items';
+  renderPaymentSummary();
+  
 }
 function addToStorage(){
   localStorage.setItem('cart',JSON.stringify(cart));
@@ -69,6 +73,8 @@ function saveQuantity(id,value){
   document.querySelector(`.js-save-quantity-link-${id}`).classList.remove('is-editing-quantity');
   document.querySelector(`.js-quantity-label-${id}`).innerHTML = value;
   console.log(cart);
+  renderPaymentSummary();
+  console.log('got here');
 
   
 }
@@ -80,4 +86,5 @@ export function updateDeliveryOption(productId, deliveryOptionId){
 
    matchingItem.deliveryOptionId = deliveryOptionId;
    addToStorage();
+   renderPaymentSummary();
 }

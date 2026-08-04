@@ -689,7 +689,7 @@ export const products = [
   }
 ];
 export function getProduct(productId){
-  let matchingProduct = 'no matching element';
+  let matchingProduct;
   products.forEach((product)=>{
     if (product.id === productId) matchingProduct = product;
   });
