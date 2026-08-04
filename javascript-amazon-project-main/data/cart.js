@@ -1,3 +1,5 @@
+import { renderCheckoutHeader } from "../scripts/checkout/checkoutHeader.js";
+import { renderOrderSummary } from "../scripts/checkout/orderSummary.js";
 import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
 
 export let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -40,10 +42,11 @@ export function deleteItemQuantity(itemLink){
     if (item.productId === productId) cart.splice(index,1);
   });
   console.log(cart);
-  const container = document.querySelector(`.js-cart-item-container-${productId}`);
-  container.remove();
+  // const container = document.querySelector(`.js-cart-item-container-${productId}`);
+  // container.remove();
+  renderOrderSummary();
   addToStorage();
-  document.querySelector('.js-return-to-home-link').innerHTML = calculateCartQuantity() + ' items';
+  renderCheckoutHeader();
   renderPaymentSummary();
   
 }
@@ -68,7 +71,7 @@ function saveQuantity(id,value){
     }
   });
   addToStorage();
-  document.querySelector('.js-return-to-home-link').innerHTML = calculateCartQuantity() + ' items';
+  renderCheckoutHeader();
   document.querySelector(`.js-quantity-input-${id}`).classList.remove('is-editing-quantity');
   document.querySelector(`.js-save-quantity-link-${id}`).classList.remove('is-editing-quantity');
   document.querySelector(`.js-quantity-label-${id}`).innerHTML = value;
