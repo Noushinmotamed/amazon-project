@@ -97,7 +97,6 @@ document.querySelectorAll('.js-update-quantity-link').forEach((itemLink) => {
 function addToStorage(){
   localStorage.addItem('cart',JSON.stringify(cart));
 }
-console.log(dayjs());
 function deliveryOptionsHTML(matchingItem,cartItem){
   let html='';
   deliveryOptions.forEach((deliveryOption)=>{

@@ -25,7 +25,6 @@ function skipWeekend(deliveryDays){
   let oldDeliveryDays = deliveryDays;
   let newDeliveryDays = oldDeliveryDays;
   while( oldDeliveryDays !=0){
-    console.log(today);
     today = today.add(1,'day');
     if (today.format('dddd') === 'Saturday' || today.format('dddd') === 'Sunday') {
       newDeliveryDays ++;
