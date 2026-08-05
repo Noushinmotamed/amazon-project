@@ -35,7 +35,7 @@ let deliveryDay = getDate(deliveryOption);
 
  cartHTML +=
   `
-          <div class="cart-item-container js-cart-item-container-${matchingItem.id}">
+          <div class="cart-item-container js-cart-item-container js-cart-item-container-${matchingItem.id}">
             <div class="delivery-date">
               Delivery Date: ${deliveryDay}
             </div>
@@ -51,7 +51,7 @@ let deliveryDay = getDate(deliveryOption);
                 <div class="product-price">
                   $${formatCurrency(matchingItem.priceCents)}
                 </div>
-                <div class="product-quantity js-product-quantity">
+                <div class="product-quantity js-product-quantity js-product-quantity-${matchingItem.id}">
                   <span class="span-quantity">
                     Quantity: <span class="quantity-label js-quantity-label-${matchingItem.id}">${quantity}</span>
                   </span>
@@ -60,7 +60,7 @@ let deliveryDay = getDate(deliveryOption);
                   </span>
                   <input class="quantity-input js-quantity-input-${matchingItem.id}">
                   <span class="save-quantity-link link-primary js-save-quantity-link-${matchingItem.id}">Save</span>
-                  <span class="delete-quantity-link link-primary js-delete-quantity-link" data-product-id = "${matchingItem.id}">
+                  <span class="delete-quantity-link link-primary js-delete-quantity-link js-delete-quantity-link-${matchingItem.id}" data-product-id = "${matchingItem.id}">
                     Delete
                   </span>
                 </div>
@@ -133,5 +133,6 @@ document.querySelectorAll('.js-delivery-option').forEach((element)=>{
   });
   
 });
+
 }
 
