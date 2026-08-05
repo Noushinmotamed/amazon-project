@@ -2,7 +2,9 @@ import { renderCheckoutHeader } from "../scripts/checkout/checkoutHeader.js";
 import { renderOrderSummary } from "../scripts/checkout/orderSummary.js";
 import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
 
-export let cart = JSON.parse(localStorage.getItem('cart')) || [];
+export let cart;
+
+loadFromStorage();
 
 export function addToCart(productId,quantity){
   let matchingItem;
@@ -90,4 +92,8 @@ export function updateDeliveryOption(productId, deliveryOptionId){
    matchingItem.deliveryOptionId = deliveryOptionId;
    addToStorage();
    renderPaymentSummary();
+}
+
+export function loadFromStorage(){
+  cart = JSON.parse(localStorage.getItem('cart')) || [];
 }
