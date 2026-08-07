@@ -45,10 +45,10 @@ let deliveryDay = getDate(deliveryOption);
                 src="${matchingItem.image}">
 
               <div class="cart-item-details">
-                <div class="product-name">
+                <div class="product-name js-product-name-${matchingItem.id}">
                  ${matchingItem.name}
                 </div>
-                <div class="product-price">
+                <div class="product-price js-product-price-${matchingItem.id}">
                   $${formatCurrency(matchingItem.priceCents)}
                 </div>
                 <div class="product-quantity js-product-quantity js-product-quantity-${matchingItem.id}">
@@ -83,7 +83,7 @@ renderCheckoutHeader();
 displayCart();
 document.querySelectorAll('.js-delete-quantity-link').forEach((itemLink) => {
  itemLink.addEventListener('click',()=> { 
-  deleteItemQuantity(itemLink);
+  deleteItemQuantity(itemLink.dataset.productId);
 
 }
 );
@@ -106,11 +106,11 @@ function deliveryOptionsHTML(matchingItem,cartItem){
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
      html += `
-                <div class="delivery-option js-delivery-option" data-product-id="${matchingItem.id}"
+                <div class="delivery-option js-delivery-option js-delivey-option-${deliveryOption.id}-${matchingItem.id}" data-product-id="${matchingItem.id}"
                 data-delivery-option-id="${deliveryOption.id}" >
                   <input type="radio" 
                     ${isChecked ? 'checked' : ''}
-                    class="delivery-option-input js-delivery-option-input-${deliveryOption.id}"}
+                    class="delivery-option-input js-delivery-option-input-${deliveryOption.id} js-delivery-option-input-${deliveryOption.id}-${matchingItem.id}"}
                     name="delivery-option-${matchingItem.id}">
                   <div>
                     <div class="delivery-option-date">

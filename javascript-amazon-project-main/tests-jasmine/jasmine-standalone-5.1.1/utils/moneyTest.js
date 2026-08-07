@@ -11,4 +11,11 @@ describe('tset Suite : FormatCurrency',()=>{
     expect(formatCurrency(2000.4)).toEqual('20.00');
     expect(formatCurrency(2000.6)).toEqual('20.01');
   });
+  it('Works all the same with negetive',()=>{
+    expect(formatCurrency(-2095)).toEqual('-20.95');
+    expect(formatCurrency(-0)).toEqual('0.00');
+    expect(formatCurrency(-2000.4)).toEqual('-20.00');
+    expect(formatCurrency(-2000.6)).toEqual('-20.01');
+    
+  })
 });

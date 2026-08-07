@@ -38,14 +38,11 @@ export function updateItemQuantity(itemLink){
       
   }
 }
-export function deleteItemQuantity(itemLink){
-  const productId = itemLink.dataset.productId;
+export function deleteItemQuantity(productId){
   cart.forEach((item,index) => {
     if (item.productId === productId) cart.splice(index,1);
   });
   console.log(cart);
-  // const container = document.querySelector(`.js-cart-item-container-${productId}`);
-  // container.remove();
   renderOrderSummary();
   addToStorage();
   renderCheckoutHeader();
@@ -88,6 +85,7 @@ export function updateDeliveryOption(productId, deliveryOptionId){
    cart.forEach((cartItem)=>{
     if (cartItem.productId === productId) matchingItem = cartItem;
    });
+   if(!matchingItem) return;
 
    matchingItem.deliveryOptionId = deliveryOptionId;
    addToStorage();
