@@ -4,15 +4,15 @@ import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
 
 class Cart{
    cartItems;
-   localStorageKey;
+   #localStorageKey;
 
    constructor(localStorageKey){
-     this.localStorageKey = localStorageKey;
-     this.loadFromStorage();
+     this.#localStorageKey = localStorageKey;
+     this.#loadFromStorage();
    }
 
-   loadFromStorage(){
-     this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+   #loadFromStorage(){
+     this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [];
    }
    addToStorage(){
       localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems));
@@ -118,9 +118,9 @@ updateDeliveryOption(productId, deliveryOptionId){
 const cart = new Cart('cart-oop');
 const bussinessCart = new Cart('bussiness-cart');
 
-cart.loadFromStorage();
-bussinessCart.loadFromStorage();
+
 cart.addToCart('id1');
+
 
 console.log(cart);
 console.log(bussinessCart);
