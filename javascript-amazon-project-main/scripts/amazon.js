@@ -9,7 +9,6 @@ document.querySelector('.js-cart-quantity').innerHTML = calculateCartQuantity();
 
 products.forEach((product) => {
   productsHTML += 
-  //product.createHTML();
    `<div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -46,6 +45,8 @@ products.forEach((product) => {
               <option value="10">10</option>
             </select>
           </div>
+
+          ${product.extraInfoHTML()}
 
           <div class="product-spacer"></div>
 
