@@ -35,32 +35,32 @@ let deliveryDay = getDate(deliveryOption);
 
  cartHTML +=
   `
-          <div class="cart-item-container js-cart-item-container js-cart-item-container-${matchingItem.id}">
+          <div class="cart-item-container js-cart-item-container js-cart-item-container-${matchingItem.getId()}">
             <div class="delivery-date">
               Delivery Date: ${deliveryDay}
             </div>
 
             <div class="cart-item-details-grid">
               <img class="product-image"
-                src="${matchingItem.image}">
+                src="${matchingItem.getImageUrl()}">
 
               <div class="cart-item-details">
-                <div class="product-name js-product-name-${matchingItem.id}">
-                 ${matchingItem.name}
+                <div class="product-name js-product-name-${matchingItem.getId()}">
+                 ${matchingItem.getName()}
                 </div>
-                <div class="product-price js-product-price-${matchingItem.id}">
-                  $${formatCurrency(matchingItem.priceCents)}
+                <div class="product-price js-product-price-${matchingItem.getId()}">
+                  ${matchingItem.getPrice()}
                 </div>
-                <div class="product-quantity js-product-quantity js-product-quantity-${matchingItem.id}">
+                <div class="product-quantity js-product-quantity js-product-quantity-${matchingItem.getId()}">
                   <span class="span-quantity">
-                    Quantity: <span class="quantity-label js-quantity-label-${matchingItem.id}">${quantity}</span>
+                    Quantity: <span class="quantity-label js-quantity-label-${matchingItem.getId()}">${quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id = "${matchingItem.id}">
+                  <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id = "${matchingItem.getId()}">
                     Update
                   </span>
-                  <input class="quantity-input js-quantity-input-${matchingItem.id}">
-                  <span class="save-quantity-link link-primary js-save-quantity-link-${matchingItem.id}">Save</span>
-                  <span class="delete-quantity-link link-primary js-delete-quantity-link js-delete-quantity-link-${matchingItem.id}" data-product-id = "${matchingItem.id}">
+                  <input class="quantity-input js-quantity-input-${matchingItem.getId()}">
+                  <span class="save-quantity-link link-primary js-save-quantity-link-${matchingItem.getId()}">Save</span>
+                  <span class="delete-quantity-link link-primary js-delete-quantity-link js-delete-quantity-link-${matchingItem.getId()}" data-product-id = "${matchingItem.getId()}">
                     Delete
                   </span>
                 </div>
@@ -106,12 +106,12 @@ function deliveryOptionsHTML(matchingItem,cartItem){
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
      html += `
-                <div class="delivery-option js-delivery-option js-delivey-option-${deliveryOption.id}-${matchingItem.id}" data-product-id="${matchingItem.id}"
+                <div class="delivery-option js-delivery-option js-delivey-option-${deliveryOption.id}-${matchingItem.getId()}" data-product-id="${matchingItem.getId()}"
                 data-delivery-option-id="${deliveryOption.id}" >
                   <input type="radio" 
                     ${isChecked ? 'checked' : ''}
-                    class="delivery-option-input js-delivery-option-input-${deliveryOption.id} js-delivery-option-input-${deliveryOption.id}-${matchingItem.id}"}
-                    name="delivery-option-${matchingItem.id}">
+                    class="delivery-option-input js-delivery-option-input-${deliveryOption.id} js-delivery-option-input-${deliveryOption.id}-${matchingItem.getId()}"}
+                    name="delivery-option-${matchingItem.getId()}">
                   <div>
                     <div class="delivery-option-date">
                     ${deliveryDate}

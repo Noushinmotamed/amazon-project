@@ -9,30 +9,31 @@ document.querySelector('.js-cart-quantity').innerHTML = calculateCartQuantity();
 
 products.forEach((product) => {
   productsHTML += 
+  //product.createHTML();
    `<div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
-              src="${product.image}">
+              src="${product.getImageUrl()}">
           </div>
 
           <div class="product-name limit-text-to-2-lines">
-            ${product.name}
+            ${product.getName()}
           </div>
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${product.rating.stars * 10}.png">
+              src="${product.getStarsUrl()}">
             <div class="product-rating-count link-primary">
-              ${product.rating.count}
+              ${product.getCount()}
             </div>
           </div>
 
           <div class="product-price">
-            $${formatCurrency(product.priceCents)}
+            ${product.getPrice()}
           </div>
 
-          <div class="product-quantity-container js-product-quantity-container" data-product-id=${product.id}>
-            <select class="js-quantity-selector-${product.id}">
+          <div class="product-quantity-container js-product-quantity-container" data-product-id=${product.getId()}>
+            <select class="js-quantity-selector-${product.getId()}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -48,15 +49,16 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart js-added-to-cart-${product.id}">
+          <div class="added-to-cart js-added-to-cart-${product.getId()}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id = "${product.id}">
+          <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id = "${product.getId()}">
             Add to Cart
           </button>
         </div>`;
+        
         
 });
 
