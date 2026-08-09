@@ -1,6 +1,11 @@
-import { Product, Clothing, Appliance } from "../../../data/products.js"
+import { Product, Clothing, Appliance, loadProducts } from "../../../data/products.js"
 
 describe('test suit: Product class',()=>{
+  beforeAll((done)=>{
+        loadProducts(()=>{
+          done();
+        })
+           });
   const produdctDetails = {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -27,6 +32,11 @@ describe('test suit: Product class',()=>{
   })
 });
 describe('test suite: Clothing',()=>{
+  beforeAll((done)=>{
+        loadProducts(()=>{
+          done();
+        })
+           });
   const produdctDetails = {
     id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
     image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
@@ -76,6 +86,11 @@ describe('test suit: Appliance class',()=>{
     instructionLink: "images/appliance-instructions.png",
     warrantLink: "images/appliance-warranty.png"
   };
+   beforeAll((done)=>{
+        loadProducts(()=>{
+          done();
+        })
+           });
   it('generates appliance object',()=>{
     const object1 = new Appliance(productDetails);
     expect(object1.getId()).toEqual(productDetails.id);
