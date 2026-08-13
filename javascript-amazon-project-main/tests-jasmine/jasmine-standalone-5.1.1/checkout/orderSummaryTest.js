@@ -8,11 +8,8 @@ describe('Test suite: RenderOrderSummary', ()=>{
         const optionId1 = '1';
         const optionId2 = '2';
         const optionId3 = '3';
-     beforeAll((done)=>{
-       loadProductsFetch().then(()=>{
-        done();
-       });
-      
+       beforeAll(async()=>{
+           await loadProductsFetch();
          })
      beforeEach(()=>{
      spyOn(localStorage, 'setItem');

@@ -15,6 +15,12 @@ cart.forEach((cartItem)=>{
   let id = cartItem.productId;
   let quantity = cartItem.quantity;
   let matchingItem = getProduct(id);
+  try{
+    if (!matchingItem) throw(`ERROR: matching product not found with id ${id}`);
+  }catch(error){
+    console.log(error);
+  }
+  
 
   const deliveryOptionId = cartItem.deliveryOptionId;
   let deliveryOption;
@@ -106,7 +112,7 @@ function deliveryOptionsHTML(matchingItem,cartItem){
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
      html += `
-                <div class="delivery-option js-delivery-option js-delivey-option-${deliveryOption.id}-${matchingItem.getId()}" data-product-id="${matchingItem.getId()}"
+                <div class="delivery-option js-delivery-option js-delivey-option-${deliveryOption.id}-${matchingItem.id}" data-product-id="${matchingItem.getId()}"
                 data-delivery-option-id="${deliveryOption.id}" >
                   <input type="radio" 
                     ${isChecked ? 'checked' : ''}

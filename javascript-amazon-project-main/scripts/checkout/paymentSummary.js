@@ -1,4 +1,4 @@
-import { calculateCartQuantity } from "../../data/cart.js";
+import { calculateCartQuantity, clearCart } from "../../data/cart.js";
 import { cart } from "../../data/cart.js";
 import { getProduct, products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
@@ -85,11 +85,13 @@ document.querySelector('.js-place-order-button').addEventListener('click', async
 
   const orderData = await response.json();
   console.log(orderData);
+  if (orderData.errorMessage) throw(orderData.errorMessage);
   addOrder(orderData);
 }catch(error){
   console.log(`error in placing order:
     ${error}`);
 }
+clearCart();
 window.location.href = 'orders.html';
 });
 

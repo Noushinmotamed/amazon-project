@@ -1,7 +1,7 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 import { loadProducts, loadProductsFetch } from "../data/products.js";
-import { loadCart } from "../data/cart.js";
+import { loadCart, loadCartFetch } from "../data/cart.js";
 //import '../data/backend-practice.js';
 //import '../data/cart-class.js';
 
@@ -9,17 +9,16 @@ import { loadCart } from "../data/cart.js";
 async function loadPage(){
   try{
    
-    await loadProductsFetch();
-    await new Promise((resolve, reject)=>{
-    loadCart(()=>{
-      console.log('finished loading cart');
-      resolve();
-      //reject('error3');
-    })
-  });
+    // await loadProductsFetch();
+    // await loadCartFetch();
+    await Promise.all([
+      loadCartFetch(),
+      loadProductsFetch()
+    ])
 
   } catch(error) {
-    console.log(error);
+    console.log(`error in loading resources:
+      ${error}`);
 
   }
   
@@ -28,7 +27,7 @@ async function loadPage(){
   renderPaymentSummary();
   
 }
-loadPage().then((value)=>{
+loadPage().then(()=>{
  console.log('finished loading page');
 })
 /*

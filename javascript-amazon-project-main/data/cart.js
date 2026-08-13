@@ -100,9 +100,28 @@ export function loadCart(fun){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',() =>{
    console.log(xhr.response);
- fun();
+   fun();
   });
  
   xhr.open('GET','https://supersimplebackend.dev/cart');
   xhr.send();
+}
+
+export function loadCartFetch(){
+  try
+   {const promise = fetch('https://supersimplebackend.dev/cart').then((response)=>{
+    return response.text();
+   }).then((data)=>{
+    console.log(data);
+   })
+   return promise;
+  }catch(error){
+    console.log(error);
+  }
+  
+
+} 
+
+export function clearCart(){
+  localStorage.removeItem('cart');
 }
