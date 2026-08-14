@@ -837,7 +837,6 @@ export function getProduct(productId){
   products.forEach((product)=>{
     if (product.getId() === productId) matchingProduct = product;
   });
-  console.log(matchingProduct);
   return matchingProduct;
 
 }

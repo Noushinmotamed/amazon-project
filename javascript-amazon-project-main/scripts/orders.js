@@ -5,6 +5,8 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { formatCurrency } from "./utils/money.js";
 import { products, Product, loadProductsFetch } from "../data/products.js";
 
+export let url;
+
 async function renderOrderPage(){
 
   console.log(orders);
@@ -109,3 +111,9 @@ function renderDetailedGrid(orderProducts,order){
    
 
 }
+
+document.querySelector('.js-search-button').addEventListener('click',()=>{
+  const yourSearch = document.querySelector('.js-search-bar').value;
+  window.location.href = `amazon.html?search=${yourSearch}`;
+ 
+});
