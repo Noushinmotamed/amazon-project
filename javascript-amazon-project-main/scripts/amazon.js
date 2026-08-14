@@ -98,6 +98,15 @@ document.querySelector('.js-search-button').addEventListener('click',()=>{
   window.location.href = `amazon.html?search=${yourSearch}`;
   renderProductsGrid();
 
+});
+document.querySelector('.js-search-bar').addEventListener('keydown',(event)=>{
+
+  if (event.key === 'Enter') {
+     const yourSearch = document.querySelector('.js-search-bar').value;
+     window.location.href = `amazon.html?search=${yourSearch}`;
+     renderProductsGrid();
+    
+  }
 })
 
 function getQuantity(id){
@@ -105,6 +114,7 @@ function getQuantity(id){
   return selectorElement.value;
 }
 let timeOutId;
+
 function getMessage(id){
   const element = document.querySelector(`.js-added-to-cart-${id}`);
   clearTimeout(timeOutId);
@@ -114,10 +124,13 @@ function getMessage(id){
   element.classList.add('add-to-cart-visible');
 }
 }
-function filterProducts(search){
-  let array = products;
-  return array.filter((value)=>{
-    if (value.getName().toLowerCase().includes(search.toLowerCase())) return value;
+function filterProducts(search) {
+  search = search.toLowerCase();
+
+  return products.filter((product) => {
+    return product.getName().toLowerCase().includes(search)
+      || product.getKeyWords().some((keyword) =>
+        keyword.toLowerCase().includes(search)
+      );
   });
- 
 }

@@ -41,6 +41,9 @@ export class Product{
   extraInfoHTML(){
     return '';
   }
+  getKeyWords(){
+    return this.keyWords;
+  }
 }
 
 export class Clothing extends Product{
